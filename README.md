@@ -13,6 +13,9 @@ detecting anomalies, and visualizing daily, weekly, and monthly air quality tren
 ## Data Source
 Data obtained from **Sensor.Africa** public air quality archives:
 https://open.africa/en/dataset/sensorsafrica-airquality-archive-lagos
+## Dataset
+18 Months data from **Sensor.Africa** structured and uploaded on my Kaggle:
+https://www.kaggle.com/datasets/aminumuhammad/sensors-africa-air-quality-archive-lagos
 
 ## Methods Used
 - Data cleaning and preprocessing with pandas.
@@ -30,7 +33,7 @@ https://open.africa/en/dataset/sensorsafrica-airquality-archive-lagos
 lagos-air-quality-analysis/
 │
 ├── lagos_air_quality.ipynb # Jupyter notebook with all code
-├── data/ # Raw and cleaned datasets
+├── data/ # cleaned datasets
 └── README.md
 
 
