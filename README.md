@@ -90,14 +90,38 @@ Data obtained from **Sensor.Africa** public air quality archives:
 |----------------|--------------|------|
 | ACF Plots | Autocorrelation structure | [View](__results__files/__results___35_1.png) |
 | PACF Plots | Autocorrelation structure | [View](__results__files/__results___36_1.png) |
-| AR Model Forecast | Baseline autoregressive fit | [View](models_visuals/AR WFV.png) |
+| AR Model Forecast | Baseline autoregressive fit | [View](models_visuals/AR_WFV.png) |
 | ARIMA Grid Search | MAE heatmap across p–q | [View](__results__files/__results___66_0.png) |
 | Residual Diagnostics | Residual normality & independence | [View](__results__files/__results___73_1.png) |
-| ARIMA Forecast | Final model vs actual PM2.5 | [View](models_visuals/ARIMA WFV.png) |
+| ARIMA Forecast | Final model vs actual PM2.5 | [View](models_visuals/ARIMA_WFV.png) |
 
 *(Click links above to view full images on GitHub)*
 
 ---
 
 ## 🗂️ Folder Structure
+lagos-air-quality-analysis/ │ ├── lagos-air-quality-ipynb.ipynb # Main notebook ├── requirements.txt # Libraries used ├── README.md # Project description ├── data/ │ # Cleaned data ├── models # Best ARIMA model ├── models_visuals/ │ # Models performaces visualizations ├── results__files/ │ # EDA and plots ├── results/ │ ├── arima_results.json │  
 
+---
+
+## Next Steps
+
+- Extend forecasts using **SARIMA** or **Prophet** to model seasonality.  
+- Integrate **temperature and humidity** for multivariate forecasting.  
+- Develop a **real-time dashboard** for live air quality monitoring.  
+- Publish results as an open data visualization project.
+
+---
+
+## Author
+
+**Aminu Muhammad**  
+Founder, **NEAR HEALTH** — bridging healthcare and data science.  
+📧 [Contact via GitHub](https://github.com/muhammadxv)
+
+**Tools:** Python, pandas, matplotlib, seaborn, plotly, statsmodels  
+**License:** MIT  
+
+---
+
+> _“Clear air is not a privilege — it’s data, science, and policy working together.”_ 🌿
