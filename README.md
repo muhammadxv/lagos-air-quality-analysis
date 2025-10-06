@@ -1,48 +1,103 @@
-# Air Quality Analysis in Lagos, Nigeria
+# Lagos Air Quality Analysis — PM2.5 Forecasting (2023–2025)
 
-This project explores **PM2.5 air quality levels in Lagos** using open data from Sensor.Africa  
-covering **November 2023 to April 2025**. The analysis focuses on understanding pollution patterns,  
-detecting anomalies, and visualizing daily, weekly, and monthly air quality trends.
+This project analyzes and models **PM2.5 air pollution levels in Lagos, Nigeria**  
+using open data from **Sensor.Africa** (November 2023 – April 2025).  
+It explores pollution patterns, detects anomalies, and builds **time-series forecasting models (AR & ARIMA)**  
+to predict short-term air quality dynamics in one of Africa’s most urbanized cities.
 
-## Objectives
-- Clean and merge monthly air sensor data for Lagos.
-- Visualize PM2.5 behavior over time.
-- Identify outliers and pollution exceedances.
-- Analyze temporal patterns using daily, weekly, and monthly averages.
-
-## Data Source
-Data obtained from **Sensor.Africa** public air quality archives:
-https://open.africa/en/dataset/sensorsafrica-airquality-archive-lagos
-## Dataset
-18 Months data from **Sensor.Africa** structured and uploaded on my Kaggle:
-https://www.kaggle.com/datasets/aminumuhammad/sensors-africa-air-quality-archive-lagos
-
-## Methods Used
-- Data cleaning and preprocessing with pandas.
-- Outlier detection and removal.
-- Visualization using matplotlib and seaborn.
-- Time-series resampling and rolling averages.
-
-## Results Summary
-- PM2.5 levels in Lagos show irregular fluctuations with no smooth long-term trend.
-- Some short-term pollution spikes observed, possibly due to weather or traffic variations.
-- The 30-day rolling average indicates inconsistent but occasionally elevated pollution periods.
-
-## 🗂️ Folder Structure
-
-lagos-air-quality-analysis/
-│
-├── lagos_air_quality.ipynb # Jupyter notebook with all code
-├── data/ # cleaned datasets
-└── README.md
-
-
-## Next Steps
-- Incorporate PM10 and temperature/humidity variables.
-- Build predictive models for short-term PM2.5 forecasting.
-- Develop an interactive dashboard to monitor air quality in real-time.
+ **For full interactive experience, view the Kaggle notebook:**  
+👉 [Lagos Air Quality Analysis on Kaggle](https://www.kaggle.com/code/aminumuhammad/lagos-air-quality-ipynb)
 
 ---
-**Author:** [Aminu Muhammad]  
-**Tools:** Python, pandas, matplotlib, seaborn, scikit-learn
+
+## Objectives
+
+- Clean and merge open-source PM2.5 datasets from multiple months.  
+- Explore temporal pollution patterns across **daily, weekly, and monthly** timeframes.  
+- Detect and remove outliers above threshold (PM2.5 > 500 µg/m³).  
+- Evaluate baseline forecasting methods (Naive & Mean).  
+- Build, tune, and validate **AR (AutoRegressive)** and **ARIMA** models.  
+- Perform **walk-forward validation (WFV)** and **residual diagnostics** for robustness.  
+- Visualize model forecasts interactively.
+
+---
+
+## Data Source
+
+Data obtained from **Sensor.Africa** public air quality archives:  
+ [https://open.africa/en/dataset/sensorsafrica-airquality-archive-lagos](https://open.africa/en/dataset/sensorsafrica-airquality-archive-lagos)
+
+**Dataset (18 months)** also available on Kaggle:  
+ [Lagos PM2.5 Dataset on Kaggle](https://www.kaggle.com/datasets/aminumuhammad/sensors-africa-air-quality-archive-lagos)
+
+---
+
+## Methods & Workflow
+
+1. **Data Cleaning & Preparation**
+   - Merged monthly CSVs.
+   - Handled missing values via interpolation.
+   - Removed extreme outliers (PM2.5 > 500).
+   - Resampled to daily means.
+
+2. **Exploratory Data Analysis (EDA)**
+   - Time series plots (daily, weekly, monthly).
+   - ACF & PACF to study lag correlations.
+   - Outlier and exceedance visualization.
+
+3. **Baseline Models**
+   - Naive forecast (last observed value).
+   - Mean forecast (historical mean).  
+   - Evaluated with **MAE** and **RMSE**.
+
+4. **Feature Engineering**
+   - Created daily averages and rolling windows.
+   - Conducted stationarity testing (ADF test).
+
+5. **AR Model**
+   - Built with lag = 24 based on ACF insights.
+   - Evaluated residuals (white noise check).
+   - Performed walk-forward validation (WFV).
+
+6. **ARIMA Model**
+   - Grid search over (p ∈ [0–5], d=1, q ∈ [0–5]).
+   - Selected best model via MAE minimization.
+   - Visualized results with heatmap.
+   - Conducted residual diagnostics and forecast visualization.
+
+---
+
+## Results Summary
+
+| Model | MAE | RMSE | Key Insights |
+|-------|------|------|--------------|
+| Naive Forecast | ~16.1 | ~18.4 | Weak predictive power |
+| Mean Forecast | ~9.8 | ~13.2 | Stable baseline |
+| AR Model (lag=24) | ↓ (Improved) | ↓ | Captured short-term dependencies |
+| **ARIMA (3,1,0)** | **Best (MAE ≈ 4.9)** | **Lowest RMSE** | Strong predictive performance, well-behaved residuals |
+
+### Diagnostic Insights
+- **Residuals** approximately normal and uncorrelated.
+- **ACF/PACF of residuals** show no remaining signal.
+- **Q-Q plots** confirm model adequacy.
+- **Forecasts** closely track observed PM2.5 during the test period.
+
+---
+
+## Visual Results Gallery
+
+| Visualization | Description | Link |
+|----------------|--------------|------|
+| ACF Plots | Autocorrelation structure | [View](__results__files/__results___35_1.png) |
+| PACF Plots | Autocorrelation structure | [View](__results__files/__results___36_1.png) |
+| AR Model Forecast | Baseline autoregressive fit | [View](models_visuals/AR WFV.png) |
+| ARIMA Grid Search | MAE heatmap across p–q | [View](__results__files/__results___66_0.png) |
+| Residual Diagnostics | Residual normality & independence | [View](__results__files/__results___73_1.png) |
+| ARIMA Forecast | Final model vs actual PM2.5 | [View](models_visuals/ARIMA WFV.png) |
+
+*(Click links above to view full images on GitHub)*
+
+---
+
+## 🗂️ Folder Structure
 
