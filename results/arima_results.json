@@ -1,0 +1,9 @@
+{
+    "best_order": [
+        3,
+        1,
+        0
+    ],
+    "best_mae": 4.916,
+    "model_name": "best_model"
+}

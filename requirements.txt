@@ -1,0 +1,11 @@
+pandas
+glob2
+os
+numpy
+matplotlib
+seaborn
+plotly
+tqdm
+itertools
+statsmodels
+joblib
